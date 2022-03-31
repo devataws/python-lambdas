@@ -22,12 +22,14 @@ https://8rvn115eb9.execute-api.us-east-1.amazonaws.com/v1/users
 
 payload de ejemplo:
 
+```json
 {
     "date_of_birth": "1993-10-12",
     "email": "adrian23456@gmail.com",
     "last_name": "tapia silva",
     "name": "adrian ok"
 }
+```
 
 
 Endpoint para actualizar usuarios por id, se debe utilizar verbo PUT
@@ -36,6 +38,7 @@ https://8rvn115eb9.execute-api.us-east-1.amazonaws.com/v1/users
 
 payload de ejemplo:
 
+```json
 {
   "id": "0936f9e8-af1f-11ec-821a-9faea91aa602",
   "name": "adrian ok",
@@ -43,14 +46,16 @@ payload de ejemplo:
   "email": "adriasdn23456@gmail.com",
   "date_of_birth": "1994-10-12"
 }
+```
 
 Endpoint para eliminar usuarios por id, se debe utilizar verbo DELETE
 
 https://8rvn115eb9.execute-api.us-east-1.amazonaws.com/v1/users
-
+```json
 {
   "id": "0936f9e8-af1f-11ec-821a-9faea91aa602"
 }
+```
 
 
 
