@@ -1,0 +1,69 @@
+from boto3.dynamodb.conditions import Key, Attr
+from datetime import datetime
+import json, uuid, re, copy
+import boto3
+
+regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$' 
+date_format = '%Y-%m-%d'
+
+def lambda_handler(event, context):
+
+    try:
+        client = boto3.resource('dynamodb')
+        table = client.Table('Users')
+         
+        id_user = table.scan(FilterExpression=Attr('id').eq(event['id']))
+        
+        if re.search(regex,event['email']) != None :
+            if datetime.strptime(event['date_of_birth'], date_format):
+                data = table.scan(FilterExpression=Attr('email').eq(event['email']))
+                if id_user['Items'] != []:
+                    if data['Items'] == []:
+                        response = table.put_item(
+                            Item = {
+                                'id': event['id'],
+                                'name': event['name'],
+                                'last_name': event['last_name'],
+                                'email': event['email'],
+                                'date_of_birth': event['date_of_birth']
+                            })
+                    else:
+                        if event['id'] == data['Items'][0]['id']:
+                            response = table.put_item(
+                                Item = {
+                                            'id': event['id'],
+                                            'name': event['name'],
+                                            'last_name': event['last_name'],
+                                            'email': event['email'],
+                                            'date_of_birth': event['date_of_birth']
+                                })
+                        else:
+                            return {
+                                    'statusCode': 200,
+                                    'body': 'E-mail registrado, intenté con otro correo.' 
+                            }
+                else:
+                    return {
+                        'statusCode': 400,
+                        'body': 'Usuario no existe' 
+                    }
+        
+            else:
+                return {
+                    'statusCode': 400,
+                    'body': 'Formato de fecha incorrecto' 
+                }              
+
+        else:
+            return {
+                'statusCode': 400,
+                'body': 'Formato de email incorrecto' 
+            }
+            
+            
+    except Exception as e:
+        return {
+            'statusCode': 400,
+            'body': 'Bad request' 
+        }
+        
