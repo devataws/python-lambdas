@@ -1,6 +1,6 @@
 # python-lambdas
 
-Estimados, el desafío ha sido resuelto con tecnología serverless de AWS, especificamente con los servicios de API Gateway, AWS Lambda y DynamoDB.
+CRUD Python con validaciones en tecnología serverless de AWS, especificamente con los servicios de API Gateway, AWS Lambda y DynamoDB.
 
 Las funciones son escritas en lenguaje Python version 3.9 
 
@@ -24,10 +24,10 @@ payload de ejemplo:
 
 ```json
 {
-    "date_of_birth": "1993-10-12",
-    "email": "adrian23456@gmail.com",
-    "last_name": "tapia silva",
-    "name": "adrian ok"
+    "date_of_birth": "1985-09-07",
+    "email": "hola23456@gmail.com",
+    "last_name": "garay zamorano",
+    "name": "ivan"
 }
 ```
 
@@ -41,10 +41,10 @@ payload de ejemplo:
 ```json
 {
   "id": "0936f9e8-af1f-11ec-821a-9faea91aa602",
-  "name": "adrian ok",
-  "last_name": "tapiaa silva",
-  "email": "adriasdn23456@gmail.com",
-  "date_of_birth": "1994-10-12"
+  "name": "ivan",
+  "last_name": "garay zamorano",
+  "email": "holaaa23456@gmail.com",
+  "date_of_birth": "1985-09-07"
 }
 ```
 
